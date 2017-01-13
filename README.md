@@ -1,6 +1,8 @@
-# SendInBlue API Client Library (Go)
+# SendInBlue API Client Library (Go) -- WIP
 
 SendInBlue API Documentation: https://apidocs.sendinblue.com/
+
+Download: `go get -u github.com/JKhawaja/sendinblue`
 
 ## TODO
 
