@@ -32,18 +32,28 @@ type Template struct {
 	From_email     string
 	Reply_to       string
 	To_field       string
-	Status         int // 0 or 1
+	Status         int // 0 (active) or 1 (inactive)
 	Attachment_url string
 }
 
-type Data struct {
+type EmailData struct {
 	Message_id string `json:"message-id"`
 }
 
 type EmailResponse struct {
-	Code    string `json:"code"`
-	Message string `json:"message"`
-	Data    Data   `json:"data"`
+	Code    string    `json:"code"`
+	Message string    `json:"message"`
+	Data    EmailData `json:"data"`
+}
+
+type TemplateData struct {
+	ID string `json:"id"`
+}
+
+type TemplateResponse struct {
+	Code    string       `json:"code"`
+	Message string       `json:"message"`
+	Data    TemplateData `json:"data"`
 }
 
 func NewEmail() *Email {
