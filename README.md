@@ -1,4 +1,4 @@
-# SendInBlue API Client Library (Go) -- WIP
+# SendInBlue APIv2.0 Client Library (Go) -- WIP
 
 SendInBlue API Documentation: https://apidocs.sendinblue.com/
 
