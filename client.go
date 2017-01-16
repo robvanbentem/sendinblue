@@ -258,14 +258,12 @@ func (c *Client) SendTemplateEmail(id int, to []string, e *EmailOptions) (EmailR
 	return response, nil
 }
 
-func (c *Client) UpdateTemplate(id int, t *Template) (UpdateTemplateResponse, error) {
-
-	emptyResp := UpdateTemplateResponse{}
+func (c *Client) UpdateTemplate(id int, t *Template) error {
 
 	body, err := json.Marshal(t)
 	if err != nil {
 		err = fmt.Errorf("Could not marshal JSON: ", err)
-		return emptyResp, err
+		return err
 	}
 	r := bytes.NewReader(body)
 
@@ -273,33 +271,21 @@ func (c *Client) UpdateTemplate(id int, t *Template) (UpdateTemplateResponse, er
 	req, err := http.NewRequest("PUT", url, r)
 	if err != nil {
 		err := fmt.Errorf("Could not create http request: ", err)
-		return emptyResp, err
+		return err
 	}
 	req.Header.Add("Content-Type", "application/json")
 	req.Header.Add("api-key", c.apiKey)
 	resp, err := c.Client.Do(req)
 	if err != nil {
 		err := fmt.Errorf("Could not send http request: ", err)
-		return emptyResp, err
+		return err
 	}
 	defer resp.Body.Close()
 
-	b, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
-		err := fmt.Errorf("Could not recognize API response format: ", err)
-		return emptyResp, err
+	if resp.StatusCode != 200 {
+		err := fmt.Errorf("Request error: ", resp.Status)
+		return err
 	}
 
-	var response UpdateTemplateResponse
-	err = json.Unmarshal(b, &response)
-	if err != nil {
-		buf := new(bytes.Buffer)
-		buf.ReadFrom(resp.Body)
-		newStr := buf.String()
-		log.Println(newStr)
-		err := fmt.Errorf("Could not decode response format: ", err)
-		return emptyResp, err
-	}
-
-	return response, nil
+	return nil
 }
