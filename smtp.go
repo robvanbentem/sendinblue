@@ -76,7 +76,7 @@ type EmailResponse struct {
 }
 
 type TemplateData struct {
-	ID string `json:"id"`
+	ID int `json:"id"`
 }
 
 type TemplateResponse struct {
