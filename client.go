@@ -293,7 +293,10 @@ func (c *Client) UpdateTemplate(id int, t *Template) (UpdateTemplateResponse, er
 	var response UpdateTemplateResponse
 	err = json.Unmarshal(b, &response)
 	if err != nil {
-		log.Println(resp.Body)
+		buf := new(bytes.Buffer)
+		buf.ReadFrom(resp.Body)
+		newStr := buf.String()
+		log.Println(newStr)
 		err := fmt.Errorf("Could not decode response format: ", err)
 		return emptyResp, err
 	}
