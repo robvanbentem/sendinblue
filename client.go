@@ -195,7 +195,7 @@ func (c *Client) SendTemplateEmail(id int, to []string, e *EmailOptions) (EmailR
 	r := bytes.NewReader(body)
 
 	url := fmt.Sprintf("https://api.sendinblue.com/v2.0/template/%v", id)
-	req, err := http.NewRequest("PUT", url, r)
+	req, err := http.NewRequest("GET", url, r)
 	if err != nil {
 		err := fmt.Errorf("Could not create http request: ", err)
 		return emptyResp, err
@@ -238,7 +238,7 @@ func (c *Client) UpdateTemplate(id int, t *Template) (TemplateResponse, error) {
 	r := bytes.NewReader(body)
 
 	url := fmt.Sprintf("https://api.sendinblue.com/v2.0/template/%s", id)
-	req, err := http.NewRequest("POST", url, r)
+	req, err := http.NewRequest("PUT", url, r)
 	req.Header.Add("Content-Type", "application/json")
 	req.Header.Add("api-key", c.apiKey)
 	resp, err := c.Client.Do(req)
