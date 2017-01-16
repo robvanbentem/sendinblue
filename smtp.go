@@ -36,6 +36,13 @@ type Template struct {
 	Attachment_url string
 }
 
+type TemplateList struct {
+	Type       string `json:"type"`
+	Status     string `json:"status"`
+	Page       int    `json:"page"`
+	Page_limit int    `json:"page_limit"`
+}
+
 type EmailData struct {
 	Message_id string `json:"message-id"`
 }
@@ -54,6 +61,41 @@ type TemplateResponse struct {
 	Code    string       `json:"code"`
 	Message string       `json:"message"`
 	Data    TemplateData `json:"data"`
+}
+
+type CampaignData struct {
+	ID            string `json:"id"`
+	Campaign_name string `json:"campaign_name"`
+	Subject       string `json:"subject"`
+	Bat_sent      string `json:"bat_sent"`
+	Type          string `json:"type"`
+	Html_content  string `json:"html_content"`
+	Entered       string `json:"entered"`
+	Modified      string `json:"modified"`
+	Templ_status  string `json:"templ_status"`
+	From_name     string `json:"from_name"`
+	From_email    string `json:"from_email"`
+	Reply_to      string `json:"reply_to"`
+	To_field      string `json:"to_field"`
+}
+
+type CampaignResponse struct {
+	Code    string         `json:"code"`
+	Message string         `json:"message"`
+	Data    []CampaignData `json:"data"`
+}
+
+type TemplateListData struct {
+	Campaign_records       []CampaignData `json:"campaign_records"`
+	Page                   int            `json:"page"`
+	Page_limit             int            `json:"page_limit"`
+	Total_campaign_records int            `json:"total_campaign_records"`
+}
+
+type TemplateListResponse struct {
+	Code    string           `json:"code"`
+	Message string           `json:"message"`
+	Data    TemplateListData `json:"data"`
 }
 
 func NewEmail() *Email {

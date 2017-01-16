@@ -131,3 +131,66 @@ func (c *Client) UpdateTemplate(id string, t *Template) (TemplateResponse, error
 
 	return response, nil
 }
+
+func (c *Client) GetTemplate(template_id string) (CampaignResponse, error) {
+
+	emptyResp := CampaignResponse{}
+
+	url := fmt.Sprintf("https://api.sendinblue.com/v2.0/campaign/%s/detailsv2", template_id)
+	req, err := http.NewRequest("GET", url, nil)
+	req.Header.Add("api-key", c.apiKey)
+	resp, err := c.Client.Do(req)
+	defer resp.Body.Close()
+
+	b, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		err := fmt.Errorf("Could not recognize API response format: ", err)
+		return emptyResp, err
+	}
+
+	var response CampaignResponse
+	err = json.Unmarshal(b, &response)
+	if err != nil {
+		log.Println(resp.Body)
+		err := fmt.Errorf("Error: could not decode response format: ", err)
+		return emptyResp, err
+	}
+
+	return response, nil
+}
+
+// Takes a Type, Status, Page, and Page_Limit as arguments
+func (c *Client) ListTemplates(t *TemplateList) (TemplateListResponse, error) {
+
+	emptyResp := TemplateListResponse{}
+
+	body, err := json.Marshal(t)
+	if err != nil {
+		err = fmt.Errorf("Could not marshal JSON: ", err)
+		return emptyResp, err
+	}
+	r := bytes.NewReader(body)
+
+	url := fmt.Sprintf("https://api.sendinblue.com/v2.0/campaign/detailsv2")
+	req, err := http.NewRequest("GET", url, r)
+	req.Header.Add("Content-Type", "application/json")
+	req.Header.Add("api-key", c.apiKey)
+	resp, err := c.Client.Do(req)
+	defer resp.Body.Close()
+
+	b, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		err := fmt.Errorf("Could not recognize API response format: ", err)
+		return emptyResp, err
+	}
+
+	var response TemplateListResponse
+	err = json.Unmarshal(b, &response)
+	if err != nil {
+		log.Println(resp.Body)
+		err := fmt.Errorf("Error: could not decode response format: ", err)
+		return emptyResp, err
+	}
+
+	return response, nil
+}
