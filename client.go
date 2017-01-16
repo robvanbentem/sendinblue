@@ -258,9 +258,9 @@ func (c *Client) SendTemplateEmail(id int, to []string, e *EmailOptions) (EmailR
 	return response, nil
 }
 
-func (c *Client) UpdateTemplate(id int, t *Template) (TemplateResponse, error) {
+func (c *Client) UpdateTemplate(id int, t *Template) (UpdateTemplateResponse, error) {
 
-	emptyResp := TemplateResponse{}
+	emptyResp := UpdateTemplateResponse{}
 
 	body, err := json.Marshal(t)
 	if err != nil {
@@ -290,7 +290,7 @@ func (c *Client) UpdateTemplate(id int, t *Template) (TemplateResponse, error) {
 		return emptyResp, err
 	}
 
-	var response TemplateResponse
+	var response UpdateTemplateResponse
 	err = json.Unmarshal(b, &response)
 	if err != nil {
 		log.Println(resp.Body)

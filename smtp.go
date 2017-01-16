@@ -85,6 +85,11 @@ type TemplateResponse struct {
 	Data    TemplateData `json:"data"`
 }
 
+type UpdateTemplateResponse struct {
+	Code    string `json:"code"`
+	Message string `json:"message"`
+}
+
 type CampaignData struct {
 	ID            string `json:"id"`
 	Campaign_name string `json:"campaign_name"`
