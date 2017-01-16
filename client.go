@@ -196,7 +196,7 @@ func (c *Client) SendTemplateEmail(id int, to []string, e *EmailOptions) (EmailR
 
 	url := fmt.Sprintf("https://api.sendinblue.com/v2.0/template/%s", id)
 	req, err := http.NewRequest("PUT", url, r)
-	req.Header.Add("Content-Type", "application/json")
+	// req.Header.Add("Content-Type", "application/json")
 	req.Header.Add("api-key", c.apiKey)
 	resp, err := c.Client.Do(req)
 	defer resp.Body.Close()
