@@ -20,11 +20,6 @@ func main() {
 
 	// Create Email
 	email := sib.NewEmail()
-	if err != nil {
-		log.Println(err)
-		os.Exit(1)
-	}
-
 	email.From[0] = "user@example.net" // ADD SENDER EMAIL HERE
 	email.From[1] = "User"
 	email.Subject = "Test"
