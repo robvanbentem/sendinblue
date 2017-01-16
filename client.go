@@ -41,9 +41,17 @@ func (c *Client) SendEmail(e *Email) (EmailResponse, error) {
 	r := bytes.NewReader(body)
 
 	req, err := http.NewRequest("POST", "https://api.sendinblue.com/v2.0/email", r)
+	if err != nil {
+		err := fmt.Errorf("Could not create http request: ", err)
+		return emptyResp, err
+	}
 	req.Header.Add("Content-Type", "application/json")
 	req.Header.Add("api-key", c.apiKey)
 	resp, err := c.Client.Do(req)
+	if err != nil {
+		err := fmt.Errorf("Could not send http request: ", err)
+		return emptyResp, err
+	}
 	defer resp.Body.Close()
 
 	b, err := ioutil.ReadAll(resp.Body)
@@ -75,9 +83,17 @@ func (c *Client) CreateTemplate(t *Template) (TemplateResponse, error) {
 	r := bytes.NewReader(body)
 
 	req, err := http.NewRequest("POST", "https://api.sendinblue.com/v2.0/template", r)
+	if err != nil {
+		err := fmt.Errorf("Could not create http request: ", err)
+		return emptyResp, err
+	}
 	req.Header.Add("Content-Type", "application/json")
 	req.Header.Add("api-key", c.apiKey)
 	resp, err := c.Client.Do(req)
+	if err != nil {
+		err := fmt.Errorf("Could not send http request: ", err)
+		return emptyResp, err
+	}
 	defer resp.Body.Close()
 
 	b, err := ioutil.ReadAll(resp.Body)
@@ -101,10 +117,18 @@ func (c *Client) GetTemplate(template_id int) (CampaignResponse, error) {
 
 	emptyResp := CampaignResponse{}
 
-	url := fmt.Sprintf("https://api.sendinblue.com/v2.0/campaign/%s/detailsv2", template_id)
+	url := fmt.Sprintf("https://api.sendinblue.com/v2.0/campaign/%v/detailsv2", template_id)
 	req, err := http.NewRequest("GET", url, nil)
+	if err != nil {
+		err := fmt.Errorf("Could not create http request: ", err)
+		return emptyResp, err
+	}
 	req.Header.Add("api-key", c.apiKey)
 	resp, err := c.Client.Do(req)
+	if err != nil {
+		err := fmt.Errorf("Could not send http request: ", err)
+		return emptyResp, err
+	}
 	defer resp.Body.Close()
 
 	b, err := ioutil.ReadAll(resp.Body)
@@ -117,7 +141,7 @@ func (c *Client) GetTemplate(template_id int) (CampaignResponse, error) {
 	err = json.Unmarshal(b, &response)
 	if err != nil {
 		log.Println(resp.Body)
-		err := fmt.Errorf("Error: could not decode response format: ", err)
+		err := fmt.Errorf("Could not decode response format: ", err)
 		return emptyResp, err
 	}
 
@@ -138,9 +162,17 @@ func (c *Client) ListTemplates(t *TemplateList) (TemplateListResponse, error) {
 
 	url := fmt.Sprintf("https://api.sendinblue.com/v2.0/campaign/detailsv2")
 	req, err := http.NewRequest("GET", url, r)
+	if err != nil {
+		err := fmt.Errorf("Could not create http request: ", err)
+		return emptyResp, err
+	}
 	req.Header.Add("Content-Type", "application/json")
 	req.Header.Add("api-key", c.apiKey)
 	resp, err := c.Client.Do(req)
+	if err != nil {
+		err := fmt.Errorf("Could not send http request: ", err)
+		return emptyResp, err
+	}
 	defer resp.Body.Close()
 
 	b, err := ioutil.ReadAll(resp.Body)
@@ -153,7 +185,7 @@ func (c *Client) ListTemplates(t *TemplateList) (TemplateListResponse, error) {
 	err = json.Unmarshal(b, &response)
 	if err != nil {
 		log.Println(resp.Body)
-		err := fmt.Errorf("Error: could not decode response format: ", err)
+		err := fmt.Errorf("Could not decode response format: ", err)
 		return emptyResp, err
 	}
 
@@ -219,7 +251,7 @@ func (c *Client) SendTemplateEmail(id int, to []string, e *EmailOptions) (EmailR
 	err = json.Unmarshal(b, &response)
 	if err != nil {
 		log.Println(resp.Body)
-		err := fmt.Errorf("Error: could not decode response format: ", err)
+		err := fmt.Errorf("Could not decode response format: ", err)
 		return emptyResp, err
 	}
 
@@ -237,11 +269,19 @@ func (c *Client) UpdateTemplate(id int, t *Template) (TemplateResponse, error) {
 	}
 	r := bytes.NewReader(body)
 
-	url := fmt.Sprintf("https://api.sendinblue.com/v2.0/template/%s", id)
+	url := fmt.Sprintf("https://api.sendinblue.com/v2.0/template/%v", id)
 	req, err := http.NewRequest("PUT", url, r)
+	if err != nil {
+		err := fmt.Errorf("Could not create http request: ", err)
+		return emptyResp, err
+	}
 	req.Header.Add("Content-Type", "application/json")
 	req.Header.Add("api-key", c.apiKey)
 	resp, err := c.Client.Do(req)
+	if err != nil {
+		err := fmt.Errorf("Could not send http request: ", err)
+		return emptyResp, err
+	}
 	defer resp.Body.Close()
 
 	b, err := ioutil.ReadAll(resp.Body)
@@ -254,7 +294,7 @@ func (c *Client) UpdateTemplate(id int, t *Template) (TemplateResponse, error) {
 	err = json.Unmarshal(b, &response)
 	if err != nil {
 		log.Println(resp.Body)
-		err := fmt.Errorf("Error: could not decode response format: ", err)
+		err := fmt.Errorf("Could not decode response format: ", err)
 		return emptyResp, err
 	}
 
