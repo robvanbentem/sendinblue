@@ -194,11 +194,19 @@ func (c *Client) SendTemplateEmail(id int, to []string, e *EmailOptions) (EmailR
 	}
 	r := bytes.NewReader(body)
 
-	url := fmt.Sprintf("https://api.sendinblue.com/v2.0/template/%s", id)
+	url := fmt.Sprintf("https://api.sendinblue.com/v2.0/template/%v", id)
 	req, err := http.NewRequest("PUT", url, r)
-	// req.Header.Add("Content-Type", "application/json")
+	if err != nil {
+		err := fmt.Errorf("Could not create http request: ", err)
+		return emptyResp, err
+	}
+	req.Header.Add("Content-Type", "application/json")
 	req.Header.Add("api-key", c.apiKey)
 	resp, err := c.Client.Do(req)
+	if err != nil {
+		err := fmt.Errorf("Could not send http request: ", err)
+		return emptyResp, err
+	}
 	defer resp.Body.Close()
 
 	b, err := ioutil.ReadAll(resp.Body)
