@@ -169,7 +169,7 @@ func (c *Client) SendTemplateEmail(id int, to []string, e *EmailOptions) (EmailR
 			toString = toString + val + "|"
 		}
 	} else {
-		toString = toString + to[0]
+		toString = to[0]
 	}
 
 	email := TemplateEmail{}
@@ -195,7 +195,7 @@ func (c *Client) SendTemplateEmail(id int, to []string, e *EmailOptions) (EmailR
 	r := bytes.NewReader(body)
 
 	url := fmt.Sprintf("https://api.sendinblue.com/v2.0/template/%v", id)
-	req, err := http.NewRequest("GET", url, r)
+	req, err := http.NewRequest("PUT", url, r)
 	if err != nil {
 		err := fmt.Errorf("Could not create http request: ", err)
 		return emptyResp, err

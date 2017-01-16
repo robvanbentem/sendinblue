@@ -54,7 +54,7 @@ type Template struct {
 	From_email     string `json:"from_email"`   // Mandatory
 	Reply_to       string `json:"reply_to"`
 	To_field       string `json:"to_field"`
-	Status         int    `json:"status"` // 0 (active) or 1 (inactive)
+	Status         int    `json:"status"` // 0 (inactive -- default) or 1 (active)
 	Attachment_url string `json:"attachment_url"`
 }
 
