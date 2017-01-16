@@ -23,13 +23,13 @@ type Email struct {
 }
 
 type EmailOptions struct {
-	Cc             string            `json:"cc"`  // multiple addresses, delimiter = pipe
-	Bcc            string            `json:"bcc"` // multiple addresses, delimiter = pipe
-	ReplyTo        string            `json:"replyto"`
-	Attr           map[string]string `json:"attr"`
-	Attachment_url string            `json:"attachment_url"`
-	Attachment     map[string]string `json:"attachment"`
-	Headers        map[string]string `json:"headers"`
+	Cc             string // multiple addresses, delimiter = pipe
+	Bcc            string // multiple addresses, delimiter = pipe
+	ReplyTo        string
+	Attr           map[string]string
+	Attachment_url string
+	Attachment     map[string]string
+	Headers        map[string]string
 }
 
 type TemplateEmail struct {
@@ -45,17 +45,17 @@ type TemplateEmail struct {
 
 // API Docs: https://apidocs.sendinblue.com/template/
 type Template struct {
-	From_name      string
-	Template_name  string // Mandatory
-	Bat            string
-	Html_content   string // Mandatory if no html_url
-	Html_url       string // Mandatory if no html_content
-	Subject        string
-	From_email     string
-	Reply_to       string
-	To_field       string
-	Status         int // 0 (active) or 1 (inactive)
-	Attachment_url string
+	From_name      string `json:"from_name"`
+	Template_name  string `json:"template_name"` // Mandatory
+	Bat            string `json:"bat"`
+	Html_content   string `json:"html_content"` // Mandatory if no html_url
+	Html_url       string `json:"html_url"`     // Mandatory if no html_content
+	Subject        string `json:"subject"`
+	From_email     string `json:"from_email"`
+	Reply_to       string `json:"reply_to"`
+	To_field       string `json:"to_field"`
+	Status         int    `json:"status"` // 0 (active) or 1 (inactive)
+	Attachment_url string `json:"attachment_url"`
 }
 
 type TemplateList struct {
