@@ -86,8 +86,8 @@ type TemplateResponse struct {
 }
 
 type UpdateTemplateResponse struct {
-	Code    int    `json:"code"`
-	Message string `json:"message"`
+	Code    string `json:"code"`
+	Message int    `json:"message"`
 }
 
 type CampaignData struct {
