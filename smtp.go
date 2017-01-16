@@ -48,10 +48,10 @@ type Template struct {
 	From_name      string `json:"from_name"`
 	Template_name  string `json:"template_name"` // Mandatory
 	Bat            string `json:"bat"`
-	Html_content   string `json:"html_content"` // Mandatory if no html_url
-	Html_url       string `json:"html_url"`     // Mandatory if no html_content
-	Subject        string `json:"subject"`
-	From_email     string `json:"from_email"`
+	Html_content   string `json:"html_content"` // Mandatory (if no html_url)
+	Html_url       string `json:"html_url"`     // Mandatory (if no html_content)
+	Subject        string `json:"subject"`      // Mandatory
+	From_email     string `json:"from_email"`   // Mandatory
 	Reply_to       string `json:"reply_to"`
 	To_field       string `json:"to_field"`
 	Status         int    `json:"status"` // 0 (active) or 1 (inactive)
@@ -76,7 +76,7 @@ type EmailResponse struct {
 }
 
 type TemplateData struct {
-	ID string `json:"id"`
+	ID int `json:"id"`
 }
 
 type TemplateResponse struct {
