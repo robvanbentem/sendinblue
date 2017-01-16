@@ -18,8 +18,6 @@ Download: `go get -u github.com/JKhawaja/sendinblue`
 
 - Template Example
 - SendTemplate()
-- GetTemplate()
-- ListTemplates()
 - DeleteBouncedEmails() (https://apidocs.sendinblue.com/bounces/)
 - AggregateReport() (https://apidocs.sendinblue.com/statistics/)
 
