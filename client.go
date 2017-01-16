@@ -97,7 +97,7 @@ func (c *Client) CreateTemplate(t *Template) (TemplateResponse, error) {
 	return response, nil
 }
 
-func (c *Client) GetTemplate(template_id int) (CampaignResponse, error) {
+func (c *Client) GetTemplate(template_id string) (CampaignResponse, error) {
 
 	emptyResp := CampaignResponse{}
 
@@ -160,7 +160,7 @@ func (c *Client) ListTemplates(t *TemplateList) (TemplateListResponse, error) {
 	return response, nil
 }
 
-func (c *Client) SendTemplateEmail(id int, to []string, e *EmailOptions) (EmailResponse, error) {
+func (c *Client) SendTemplateEmail(id string, to []string, e *EmailOptions) (EmailResponse, error) {
 
 	toString := ""
 
@@ -218,7 +218,7 @@ func (c *Client) SendTemplateEmail(id int, to []string, e *EmailOptions) (EmailR
 	return response, nil
 }
 
-func (c *Client) UpdateTemplate(id int, t *Template) (TemplateResponse, error) {
+func (c *Client) UpdateTemplate(id string, t *Template) (TemplateResponse, error) {
 
 	emptyResp := TemplateResponse{}
 
