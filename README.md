@@ -12,7 +12,7 @@ Download: `go get -u github.com/JKhawaja/sendinblue`
 
 ### Sender
 
-- Sender Object (https://apidocs.sendinblue.com/sender-management/)
+- https://apidocs.sendinblue.com/sender-management/
 
 ### SMS Methods
 
