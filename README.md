@@ -14,10 +14,6 @@ Download: `go get -u github.com/JKhawaja/sendinblue`
 
 - Sender Object (https://apidocs.sendinblue.com/sender-management/)
 
-### SMTP Methods
-
-- AggregateReport() (https://apidocs.sendinblue.com/statistics/)
-
 ### SMS Methods
 
 - https://apidocs.sendinblue.com/mailin-sms/
