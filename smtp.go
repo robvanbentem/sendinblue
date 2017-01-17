@@ -9,6 +9,14 @@ import (
 
 /* Request Types */
 
+type AggregateReport struct {
+	Aggregate  int    `json:"aggregate"` // 0 or 1, 0 means no aggregation (stats per day)
+	Start_date string `json:"start_date"`
+	End_date   string `json:"end_date"`
+	Days       int    `json:"days"`
+	Tag        string `json:"tag"`
+}
+
 // API Docs: https://apidocs.sendinblue.com/tutorial-sending-transactional-email/
 type Email struct {
 	To           map[string]string `json:"to"`
@@ -75,24 +83,25 @@ type TemplateList struct {
 
 /* Response Types*/
 
-type EmailData struct {
-	Message_id string `json:"message-id"`
+type AggregateData struct {
+	Date          string `json:"date"`
+	Tag           string `json:"tag"`
+	Requests      int    `json:"requests"`
+	Delivered     int    `json:"delivered"`
+	Bounces       int    `json:"bounces"`
+	Clicks        int    `json:"clicks"`
+	Unique_clicks int    `json:"unique_clicks"`
+	Opens         int    `json:"opens"`
+	Unique_opens  int    `json:"unique_opens"`
+	SpamReports   int    `json:"spamreports"`
+	Blocked       int    `json:"blocked"`
+	Invalid       int    `json:"invalid"`
 }
 
-type EmailResponse struct {
-	Code    string    `json:"code"`
-	Message string    `json:"message"`
-	Data    EmailData `json:"data"`
-}
-
-type TemplateData struct {
-	ID int `json:"id"`
-}
-
-type TemplateResponse struct {
-	Code    string       `json:"code"`
-	Message string       `json:"message"`
-	Data    TemplateData `json:"data"`
+type AggregateResponse struct {
+	Code    string          `json:"code"`
+	Message string          `json:"message"`
+	Data    []AggregateData `json:"data"`
 }
 
 type CampaignData struct {
@@ -115,6 +124,26 @@ type CampaignResponse struct {
 	Code    string         `json:"code"`
 	Message string         `json:"message"`
 	Data    []CampaignData `json:"data"`
+}
+
+type EmailData struct {
+	Message_id string `json:"message-id"`
+}
+
+type EmailResponse struct {
+	Code    string    `json:"code"`
+	Message string    `json:"message"`
+	Data    EmailData `json:"data"`
+}
+
+type TemplateData struct {
+	ID int `json:"id"`
+}
+
+type TemplateResponse struct {
+	Code    string       `json:"code"`
+	Message string       `json:"message"`
+	Data    TemplateData `json:"data"`
 }
 
 type TemplateListData struct {
