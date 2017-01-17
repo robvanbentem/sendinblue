@@ -7,6 +7,8 @@ import (
 	"os"
 )
 
+/* Request Types */
+
 // API Docs: https://apidocs.sendinblue.com/tutorial-sending-transactional-email/
 type Email struct {
 	To           map[string]string `json:"to"`
@@ -32,15 +34,10 @@ type EmailOptions struct {
 	Headers        map[string]string
 }
 
-type TemplateEmail struct {
-	To             string            `json:"to"`  // multiple addresses, delimiter = pipe
-	Cc             string            `json:"cc"`  // multiple addresses, delimiter = pipe
-	Bcc            string            `json:"bcc"` // multiple addresses, delimiter = pipe
-	ReplyTo        string            `json:"replyto"`
-	Attr           map[string]string `json:"attr"`
-	Attachment_url string            `json:"attachment_url"`
-	Attachment     map[string]string `json:"attachment"`
-	Headers        map[string]string `json:"headers"`
+type DeleteBouncesRequest struct {
+	Start_date string `json:"start_date"`
+	End_date   string `json:"end_date"`
+	Email      string `json:"email"`
 }
 
 // API Docs: https://apidocs.sendinblue.com/template/
@@ -58,12 +55,25 @@ type Template struct {
 	Attachment_url string `json:"attachment_url"`
 }
 
+type TemplateEmail struct {
+	To             string            `json:"to"`  // multiple addresses, delimiter = pipe
+	Cc             string            `json:"cc"`  // multiple addresses, delimiter = pipe
+	Bcc            string            `json:"bcc"` // multiple addresses, delimiter = pipe
+	ReplyTo        string            `json:"replyto"`
+	Attr           map[string]string `json:"attr"`
+	Attachment_url string            `json:"attachment_url"`
+	Attachment     map[string]string `json:"attachment"`
+	Headers        map[string]string `json:"headers"`
+}
+
 type TemplateList struct {
 	Type       string `json:"type"`
 	Status     string `json:"status"`
 	Page       int    `json:"page"`
 	Page_limit int    `json:"page_limit"`
 }
+
+/* Response Types*/
 
 type EmailData struct {
 	Message_id string `json:"message-id"`

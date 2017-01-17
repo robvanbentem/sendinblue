@@ -113,6 +113,45 @@ func (c *Client) CreateTemplate(t *Template) (TemplateResponse, error) {
 	return response, nil
 }
 
+// Start and End dates must be in YYYY-MM-DD format
+// Start date must be before end date, and end date must be after start date
+func (c *Client) DeleteBouncedEmails(start, end, email string) error {
+
+	request := DeleteBouncesRequest{
+		Start_date: start,
+		End_date:   end,
+		Email:      email,
+	}
+
+	body, err := json.Marshal(request)
+	if err != nil {
+		err = fmt.Errorf("Could not marshal JSON: ", err)
+		return err
+	}
+	r := bytes.NewReader(body)
+
+	req, err := http.NewRequest("POST", "https://api.sendinblue.com/v2.0/bounces", r)
+	if err != nil {
+		err := fmt.Errorf("Could not create http request: ", err)
+		return err
+	}
+	req.Header.Add("Content-Type", "application/json")
+	req.Header.Add("api-key", c.apiKey)
+	resp, err := c.Client.Do(req)
+	if err != nil {
+		err := fmt.Errorf("Could not send http request: ", err)
+		return err
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode != 200 {
+		err := fmt.Errorf("Request error: ", resp.Status)
+		return err
+	}
+
+	return nil
+}
+
 func (c *Client) GetTemplate(template_id int) (CampaignResponse, error) {
 
 	emptyResp := CampaignResponse{}
