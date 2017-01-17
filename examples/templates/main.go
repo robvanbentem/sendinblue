@@ -39,7 +39,6 @@ func main() {
 	log.Println(createResponse.Message)
 
 	/* Send Template Email */
-
 	template_id := createResponse.Data.ID
 
 	userList := []string{"user1@example.net", "user2@example.net", "user3@example.net"} // RECIEVER EMAILS HERE
@@ -55,7 +54,6 @@ func main() {
 	log.Println(sendResponse.Message)
 
 	/* Update Template */
-
 	udpateTemplate := &sib.Template{
 		Template_name: "Test Template",
 		Html_content:  "Hello World. UPDATED!",
@@ -74,7 +72,6 @@ func main() {
 	log.Println("Update Template: succesful")
 
 	/* Get Template */
-
 	getResponse, err := sibClient.GetTemplate(template_id)
 	if err != nil {
 		log.Println("Get template error: ")
