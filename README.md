@@ -16,7 +16,6 @@ Download: `go get -u github.com/JKhawaja/sendinblue`
 
 ### SMTP Methods
 
-- DeleteBouncedEmails() (https://apidocs.sendinblue.com/bounces/)
 - AggregateReport() (https://apidocs.sendinblue.com/statistics/)
 
 ### SMS Methods
