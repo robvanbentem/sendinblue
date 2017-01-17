@@ -4,7 +4,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/JKhawja/sendinblue"
+	"github.com/JKhawaja/sendinblue"
 )
 
 func main() {
