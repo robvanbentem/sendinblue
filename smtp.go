@@ -86,7 +86,7 @@ type TemplateResponse struct {
 }
 
 type CampaignData struct {
-	ID            string `json:"id"`
+	ID            int    `json:"id"`
 	Campaign_name string `json:"campaign_name"`
 	Subject       string `json:"subject"`
 	Bat_sent      string `json:"bat_sent"`
