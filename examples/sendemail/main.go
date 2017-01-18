@@ -20,10 +20,10 @@ func main() {
 
 	// Create Email
 	email := sib.NewEmail()
-	email.From[0] = "user@example.net" // ADD SENDER EMAIL HERE
-	email.From[1] = "User"
+	email.From = [2]string{"sender@example.net", "Sender Name"}
 	email.Subject = "Test"
-	email.To["user@example.net"] = "User Name" // CHANGE TO TEST DELIVERY ADDRESS
+	email.To["user1@example.net"] = "User 1"
+	// email.To["user2@example.net"] = "User 2"
 	email.Text = "Hello World."
 
 	// Send Email
