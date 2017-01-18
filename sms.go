@@ -12,7 +12,7 @@ type SMSRequest struct {
 }
 
 type SMSCampaign struct {
-	Name           string `json:"camp_name"` // Mandatory
+	Name           string `json:"name"` // Mandatory
 	Sender         string `json:"sender"`
 	Content        string `json:"content"`
 	Bat_sent       string `json:"bat_sent"`

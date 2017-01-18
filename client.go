@@ -423,6 +423,38 @@ func (c *Client) SendTemplateEmail(id int, to []string, e *EmailOptions) (EmailR
 	return response, nil
 }
 
+func (c *Client) UpdateSMSCampaign(id int, s *SMSCampaign) error {
+
+	body, err := json.Marshal(s)
+	if err != nil {
+		err = fmt.Errorf("Could not marshal JSON: ", err)
+		return err
+	}
+	r := bytes.NewReader(body)
+
+	url := fmt.Sprintf("https://api.sendinblue.com/v2.0/sms/%v", id)
+	req, err := http.NewRequest("PUT", url, r)
+	if err != nil {
+		err := fmt.Errorf("Could not create http request: ", err)
+		return err
+	}
+	req.Header.Add("Content-Type", "application/json")
+	req.Header.Add("api-key", c.apiKey)
+	resp, err := c.Client.Do(req)
+	if err != nil {
+		err := fmt.Errorf("Could not send http request: ", err)
+		return err
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode != 200 {
+		err := fmt.Errorf("Request error: ", resp.Status)
+		return err
+	}
+
+	return nil
+}
+
 func (c *Client) UpdateTemplate(id int, t *Template) error {
 
 	body, err := json.Marshal(t)
