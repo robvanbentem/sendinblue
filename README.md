@@ -2,7 +2,13 @@
 
 SendInBlue API Documentation: https://apidocs.sendinblue.com/
 
-Download: `go get -u github.com/JKhawaja/sendinblue`
+## Install
+
+`go get -u github.com/JKhawaja/sendinblue`
+
+## Features
+
+- SMTP API Client
 
 ## TODO
 
@@ -10,10 +16,15 @@ Download: `go get -u github.com/JKhawaja/sendinblue`
 - godoc
 - goreportcard
 
-### Sender
-
-- https://apidocs.sendinblue.com/sender-management/
-
-### SMS Methods
+### SMS API Client
 
 - https://apidocs.sendinblue.com/mailin-sms/
+
+### Campaign API Client
+
+- https://apidocs.sendinblue.com/campaign/
+
+### Marketing Automation API Client
+
+- https://apidocs.sendinblue.com/marketing-automation-quick-start-2/
+
