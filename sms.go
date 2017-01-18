@@ -2,15 +2,6 @@ package sib
 
 /* Request Types */
 
-type SMSRequest struct {
-	To      string `json:"to"`   // Mobile Number (Mandatory)
-	From    string `json:"from"` // No more than 11 alphanumeric characters (Mandatory)
-	Text    string `json:"text"` // No more than 160 characters (Mandatory)
-	Web_url string `json:"web_url"`
-	Tag     string `json:"tag"`
-	Type    string `json:"type"` // "marketing" (default) or "transactional"
-}
-
 type SMSCampaign struct {
 	Name           string `json:"name"` // Mandatory
 	Sender         string `json:"sender"`
@@ -20,6 +11,19 @@ type SMSCampaign struct {
 	Exclude_list   []int  `json:"exclude_list"`
 	Scheduled_date string `json:"scheduled_date"` // Format: YYYY-MM-DD 00:00:00
 	Send_now       int    `json:"send_now"`       // 0 = campaign not ready to send, 1 = ready to send now
+}
+
+type SMSRequest struct {
+	To      string `json:"to"`   // Mobile Number (Mandatory)
+	From    string `json:"from"` // No more than 11 alphanumeric characters (Mandatory)
+	Text    string `json:"text"` // No more than 160 characters (Mandatory)
+	Web_url string `json:"web_url"`
+	Tag     string `json:"tag"`
+	Type    string `json:"type"` // "marketing" (default) or "transactional"
+}
+
+type SMSTest struct {
+	To string `json:"to"`
 }
 
 /* Response Types */
