@@ -423,7 +423,7 @@ func (c *Client) SendTemplateEmail(id int, to []string, e *EmailOptions) (EmailR
 	return response, nil
 }
 
-func (c *Client) TestSMSCampaign(id int, to string) (SMSResponse, error) {
+func (c *Client) SMSCampaignTest(id int, to string) (SMSResponse, error) {
 
 	request := SMSTest{
 		To: to,
