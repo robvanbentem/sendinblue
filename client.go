@@ -71,6 +71,49 @@ func (c *Client) AggregateReport(a *AggregateReport) (AggregateResponse, error) 
 	return response, nil
 }
 
+func (c *Client) CreateSMSCampaign(s *SMSCampaign) (SMSCampaignResponse, error) {
+
+	emptyResp := SMSCampaignResponse{}
+
+	body, err := json.Marshal(s)
+	if err != nil {
+		err = fmt.Errorf("Could not marshal JSON: ", err)
+		return emptyResp, err
+	}
+	r := bytes.NewReader(body)
+
+	req, err := http.NewRequest("POST", "https://api.sendinblue.com/v2.0/sms", r)
+	if err != nil {
+		err := fmt.Errorf("Could not create http request: ", err)
+		return emptyResp, err
+	}
+	req.Header.Add("Content-Type", "application/json")
+	req.Header.Add("api-key", c.apiKey)
+	resp, err := c.Client.Do(req)
+	if err != nil {
+		err := fmt.Errorf("Could not send http request: ", err)
+		return emptyResp, err
+	}
+	defer resp.Body.Close()
+
+	b, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		err := fmt.Errorf("Could not recognize API response format: ", err)
+		return emptyResp, err
+	}
+
+	var response SMSCampaignResponse
+	err = json.Unmarshal(b, &response)
+	if err != nil {
+		log.Println(resp.Body)
+		err := fmt.Errorf("Could not decode response format: ", err)
+		return emptyResp, err
+	}
+
+	return response, nil
+
+}
+
 func (c *Client) CreateTemplate(t *Template) (TemplateResponse, error) {
 
 	emptyResp := TemplateResponse{}
@@ -265,7 +308,7 @@ func (c *Client) SendEmail(e *Email) (EmailResponse, error) {
 	err = json.Unmarshal(b, &response)
 	if err != nil {
 		log.Println(resp.Body)
-		err := fmt.Errorf("Error: could not decode response format: ", err)
+		err := fmt.Errorf("Could not decode response format: ", err)
 		return emptyResp, err
 	}
 
@@ -307,7 +350,7 @@ func (c *Client) SendSMS(s *SMSRequest) (SMSResponse, error) {
 	err = json.Unmarshal(b, &response)
 	if err != nil {
 		log.Println(resp.Body)
-		err := fmt.Errorf("Error: could not decode response format: ", err)
+		err := fmt.Errorf("Could not decode response format: ", err)
 		return emptyResp, err
 	}
 

@@ -11,10 +11,27 @@ type SMSRequest struct {
 	Type    string `json:"type"` // "marketing" (default) or "transactional"
 }
 
+type SMSCampaign struct {
+	Name           string `json:"camp_name"` // Mandatory
+	Sender         string `json:"sender"`
+	Content        string `json:"content"`
+	Bat_sent       string `json:"bat_sent"`
+	List_ids       []int  `json:"listid"` // Mandatory if Scheduled_date
+	Exclude_list   []int  `json:"exclude_list"`
+	Scheduled_date string `json:"scheduled_date"` // Format: YYYY-MM-DD 00:00:00
+	Send_now       int    `json:"send_now"`       // 0 = campaign not ready to send, 1 = ready to send now
+}
+
 /* Response Types */
 
-type SMSReference struct {
-	One string `json:"1"`
+type SMSCampaignData struct {
+	Id int `json:"id"`
+}
+
+type SMSCampaignResponse struct {
+	Code    string          `json:"code"`
+	Message string          `json:"message"`
+	Data    SMSCampaignData `json:"data"`
 }
 
 type SMSData struct {
@@ -29,6 +46,10 @@ type SMSData struct {
 	Reply            string       `json:"reply"`
 	Bounce_type      string       `json:"bounce_type"`
 	Error_code       int          `json:"error_code"`
+}
+
+type SMSReference struct {
+	One string `json:"1"`
 }
 
 type SMSResponse struct {
