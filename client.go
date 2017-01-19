@@ -362,8 +362,12 @@ func (c *Client) SendTemplateEmail(id int, to []string, e *EmailOptions) (EmailR
 	toString := ""
 
 	if len(to) > 1 {
-		for _, val := range to {
-			toString = toString + val + "|"
+		for k, val := range to {
+			if k+1 < len(to) {
+				toString = toString + val + "|"
+			} else {
+				toString = toString + val
+			}
 		}
 	} else {
 		toString = to[0]
