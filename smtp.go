@@ -5,6 +5,7 @@ import (
 	"encoding/base64"
 	"fmt"
 	"os"
+	"strings"
 )
 
 /* Request Types */
@@ -187,16 +188,8 @@ func NewEmailOptions(replyto, attachment_url string, cc, bcc []string) *EmailOpt
 	attr := make(map[string]string)
 	attachment := make(map[string]string)
 	headers := make(map[string]string)
-
-	ccString := ""
-	for _, ccVal := range cc {
-		ccString = ccString + ccVal + "|"
-	}
-
-	bccString := ""
-	for _, bccVal := range bcc {
-		bccString = bccString + bccVal + "|"
-	}
+	ccString := strings.Join(cc, "|")
+	bccString := strings.Join(bcc, "|")
 
 	return &EmailOptions{
 		Cc:             ccString,
