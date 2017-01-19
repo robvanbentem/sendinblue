@@ -7,6 +7,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"strings"
 )
 
 type Client struct {
@@ -359,19 +360,23 @@ func (c *Client) SendSMS(s *SMSRequest) (SMSResponse, error) {
 
 func (c *Client) SendTemplateEmail(id int, to []string, e *EmailOptions) (EmailResponse, error) {
 
-	toString := ""
+	/*
+		toString := ""
 
-	if len(to) > 1 {
-		for k, val := range to {
-			if k+1 < len(to) {
-				toString = toString + val + "|"
-			} else {
-				toString = toString + val
+		if len(to) > 1 {
+			for k, val := range to {
+				if k+1 < len(to) {
+					toString = toString + val + "|"
+				} else {
+					toString = toString + val
+				}
 			}
+		} else {
+			toString = to[0]
 		}
-	} else {
-		toString = to[0]
-	}
+	*/
+
+	toString := strings.Join(to, "|")
 
 	email := TemplateEmail{}
 	email.To = toString
