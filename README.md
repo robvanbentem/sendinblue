@@ -9,16 +9,13 @@ SendInBlue API Documentation: https://apidocs.sendinblue.com/
 ## Features
 
 - SMTP API Client
+- SMS API Client
 
 ## TODO
 
 - tests
 - godoc
 - goreportcard
-
-### SMS API Client
-
-- https://apidocs.sendinblue.com/mailin-sms/
 
 ### Campaign API Client
 
@@ -27,4 +24,3 @@ SendInBlue API Documentation: https://apidocs.sendinblue.com/
 ### Marketing Automation API Client
 
 - https://apidocs.sendinblue.com/marketing-automation-quick-start-2/
-

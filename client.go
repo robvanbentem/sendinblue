@@ -112,7 +112,6 @@ func (c *Client) CreateSMSCampaign(s *SMSCampaign) (SMSCampaignResponse, error) 
 	}
 
 	return response, nil
-
 }
 
 func (c *Client) CreateTemplate(t *Template) (TemplateResponse, error) {
