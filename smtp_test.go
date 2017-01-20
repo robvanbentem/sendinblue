@@ -1,6 +1,8 @@
 package sib
 
 import (
+	"log"
+	"os"
 	"reflect"
 	"strings"
 	"testing"
@@ -92,5 +94,16 @@ func TestNewEmailOptions(t *testing.T) {
 
 	if options.Attachment_url != "attach.ment" {
 		t.Error("The Attachment field is not being set.")
+	}
+}
+
+func TestEmailAddImage(t *testing.T) {
+	email := NewEmail()
+
+	f, _ := os.Open("./test/myimage.jpg")
+	name := email.AddImage(f)
+
+	if email.Inline_image[name] == "" {
+		t.Error("Image is not being added in AddImage Email method.")
 	}
 }
