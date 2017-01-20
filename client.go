@@ -7,6 +7,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"strings"
+	"time"
 )
 
 type Client struct {
@@ -25,7 +26,9 @@ func NewClient(apiKey string) (*Client, error) {
 
 	return &Client{
 		apiKey: apiKey,
-		Client: &http.Client{},
+		Client: &http.Client{
+			Timeout: time.Second * 10,
+		},
 	}, nil
 }
 
