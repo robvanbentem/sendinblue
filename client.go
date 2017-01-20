@@ -5,7 +5,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
-	"log"
 	"net/http"
 	"strings"
 )
@@ -64,7 +63,6 @@ func (c *Client) AggregateReport(a *AggregateReport) (AggregateResponse, error) 
 	var response AggregateResponse
 	err = json.Unmarshal(b, &response)
 	if err != nil {
-		log.Println(resp.Body)
 		err := fmt.Errorf("Could not decode response format: ", err)
 		return emptyResp, err
 	}
@@ -106,7 +104,6 @@ func (c *Client) CreateSMSCampaign(s *SMSCampaign) (SMSCampaignResponse, error) 
 	var response SMSCampaignResponse
 	err = json.Unmarshal(b, &response)
 	if err != nil {
-		log.Println(resp.Body)
 		err := fmt.Errorf("Could not decode response format: ", err)
 		return emptyResp, err
 	}
@@ -148,7 +145,6 @@ func (c *Client) CreateTemplate(t *Template) (TemplateResponse, error) {
 	var response TemplateResponse
 	err = json.Unmarshal(b, &response)
 	if err != nil {
-		log.Println(resp.Body)
 		err := fmt.Errorf("Could not decode response format: ", err)
 		return emptyResp, err
 	}
@@ -222,7 +218,6 @@ func (c *Client) GetTemplate(template_id int) (CampaignResponse, error) {
 	var response CampaignResponse
 	err = json.Unmarshal(b, &response)
 	if err != nil {
-		log.Println(resp.Body)
 		err := fmt.Errorf("Could not decode response format: ", err)
 		return emptyResp, err
 	}
@@ -265,7 +260,6 @@ func (c *Client) ListTemplates(t *TemplateList) (TemplateListResponse, error) {
 	var response TemplateListResponse
 	err = json.Unmarshal(b, &response)
 	if err != nil {
-		log.Println(resp.Body)
 		err := fmt.Errorf("Could not decode response format: ", err)
 		return emptyResp, err
 	}
@@ -307,7 +301,6 @@ func (c *Client) SendEmail(e *Email) (EmailResponse, error) {
 	var response EmailResponse
 	err = json.Unmarshal(b, &response)
 	if err != nil {
-		log.Println(resp.Body)
 		err := fmt.Errorf("Could not decode response format: ", err)
 		return emptyResp, err
 	}
@@ -349,7 +342,6 @@ func (c *Client) SendSMS(s *SMSRequest) (SMSResponse, error) {
 	var response SMSResponse
 	err = json.Unmarshal(b, &response)
 	if err != nil {
-		log.Println(resp.Body)
 		err := fmt.Errorf("Could not decode response format: ", err)
 		return emptyResp, err
 	}
@@ -407,7 +399,6 @@ func (c *Client) SendTemplateEmail(id int, to []string, e *EmailOptions) (EmailR
 	var response EmailResponse
 	err = json.Unmarshal(b, &response)
 	if err != nil {
-		log.Println(resp.Body)
 		err := fmt.Errorf("Could not decode response format: ", err)
 		return emptyResp, err
 	}
@@ -454,7 +445,6 @@ func (c *Client) SMSCampaignTest(id int, to string) (SMSResponse, error) {
 	var response SMSResponse
 	err = json.Unmarshal(b, &response)
 	if err != nil {
-		log.Println(resp.Body)
 		err := fmt.Errorf("Could not decode response format: ", err)
 		return emptyResp, err
 	}
