@@ -19,7 +19,7 @@ func NewClient(apiKey string) (*Client, error) {
 	emptyClient := &Client{}
 
 	if apiKey == "" {
-		err := fmt.Errorf("Please provide a SendInBlue API Key.")
+		err := fmt.Errorf("Error: Please provide a SendInBlue API Key.")
 		return emptyClient, err
 	}
 
