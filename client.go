@@ -1,3 +1,4 @@
+// Package sib is a library for constructing a SendInBlue API2.0 client.
 package sib
 
 import (
@@ -10,11 +11,15 @@ import (
 	"time"
 )
 
+// The Client type is the primary type in the package.
 type Client struct {
 	apiKey string
 	Client *http.Client
 }
 
+// NewClient takes a private SendInBlue API key
+// and constructs a Client Object that can be used
+// to talk to the SendInBlue API via the Client methods.
 func NewClient(apiKey string) (*Client, error) {
 
 	emptyClient := &Client{}
@@ -26,12 +31,15 @@ func NewClient(apiKey string) (*Client, error) {
 
 	return &Client{
 		apiKey: apiKey,
-		Client: &http.Client{
+		Client: &http.Client{ // could consider using fasthttp client -- but would introduce vendor dep
 			Timeout: time.Second * 10,
 		},
 	}, nil
 }
 
+// AggregateReport is a Client Method for the SMTP API.
+// Developers can access information about aggregate / date-wise report of the SendinBlue SMTP account using this API.
+// https://apidocs.sendinblue.com/statistics/
 func (c *Client) AggregateReport(a *AggregateReport) (AggregateResponse, error) {
 
 	emptyResp := AggregateResponse{}
