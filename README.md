@@ -1,6 +1,7 @@
-# SendInBlue APIv2.0 Client Library (Go) -- WIP
+# SendInBlue APIv2.0 Client Library (Go)
 
-SendInBlue API Documentation: https://apidocs.sendinblue.com/
+[![Travis](https://img.shields.io/travis/JKhawaja/sendinblue.svg)]()
+[![GoDoc](https://godoc.org/github.com/JKhawaja/sendinblue?status.svg)](https://godoc.org/github.com/JKhawaja/sendinblue) [![Go Report Card](https://goreportcard.com/badge/github.com/JKhawaja/sendinblue)](https://goreportcard.com/report/github.com/JKhawaja/sendinblue)
 
 ## Install
 
@@ -12,10 +13,6 @@ SendInBlue API Documentation: https://apidocs.sendinblue.com/
 - SMS API Client
 
 ## TODO
-
-- tests
-- godoc
-- goreportcard
 
 ### Campaign API Client
 
