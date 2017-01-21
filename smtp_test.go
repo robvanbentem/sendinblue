@@ -1,7 +1,6 @@
 package sib
 
 import (
-	"log"
 	"os"
 	"reflect"
 	"strings"
@@ -105,5 +104,16 @@ func TestEmailAddImage(t *testing.T) {
 
 	if email.Inline_image[name] == "" {
 		t.Error("Image is not being added in AddImage Email method.")
+	}
+}
+
+func TestEmailOptionsAddAttachment(t *testing.T) {
+	options := NewEmailOptions("reply", "attach.ment", nil, nil)
+
+	f, _ := os.Open("./test/attachment.pdf")
+	options.AddAttachment(f)
+
+	if options.Attachment[f.Name()] == "" {
+		t.Error("Attachments are not being added with EmailOptions AddAttachment method.")
 	}
 }
