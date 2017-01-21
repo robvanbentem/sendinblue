@@ -2,6 +2,7 @@
 
 [![Travis](https://img.shields.io/travis/JKhawaja/sendinblue.svg)]()
 [![GoDoc](https://godoc.org/github.com/JKhawaja/sendinblue?status.svg)](https://godoc.org/github.com/JKhawaja/sendinblue) [![Go Report Card](https://goreportcard.com/badge/github.com/JKhawaja/sendinblue)](https://goreportcard.com/report/github.com/JKhawaja/sendinblue)
+[![codecov](https://codecov.io/gh/JKhawaja/sendinblue/branch/master/graph/badge.svg)](https://codecov.io/gh/JKhawaja/sendinblue)
 
 ## Install
 
