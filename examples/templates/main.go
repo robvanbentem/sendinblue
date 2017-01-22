@@ -39,11 +39,11 @@ func main() {
 	log.Println(createResponse.Message)
 
 	/* Send Template Email */
-	template_id := createResponse.Data.ID
+	templateID := createResponse.Data.ID
 
 	userList := []string{"user1@example.net", "user2@example.net", "user3@example.net"} // RECIEVER EMAILS HERE
 
-	sendResponse, err := sibClient.SendTemplateEmail(template_id, userList, nil)
+	sendResponse, err := sibClient.SendTemplateEmail(templateID, userList, nil)
 	if err != nil {
 		log.Println("Send template email error: ")
 		log.Println(err)
@@ -62,7 +62,7 @@ func main() {
 		Status:        1,
 	}
 
-	err = sibClient.UpdateTemplate(template_id, udpateTemplate)
+	err = sibClient.UpdateTemplate(templateID, udpateTemplate)
 	if err != nil {
 		log.Println("Update template error: ")
 		log.Println(err)
@@ -72,7 +72,7 @@ func main() {
 	log.Println("Update Template: succesful")
 
 	/* Get Template */
-	getResponse, err := sibClient.GetTemplate(template_id)
+	getResponse, err := sibClient.GetTemplate(templateID)
 	if err != nil {
 		log.Println("Get template error: ")
 		log.Println(err)
