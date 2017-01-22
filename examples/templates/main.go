@@ -41,7 +41,7 @@ func main() {
 	/* Send Template Email */
 	templateID := createResponse.Data.ID
 
-	userList := []string{"user1@example.net", "user2@example.net", "user3@example.net"} // RECIEVER EMAILS HERE
+	userList := []string{"user1@example.net", "user2@example.net", "user3@example.net"} // RECEIVER EMAILS HERE
 
 	sendResponse, err := sibClient.SendTemplateEmail(templateID, userList, nil)
 	if err != nil {
@@ -69,7 +69,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	log.Println("Update Template: succesful")
+	log.Println("Update Template: successful")
 
 	/* Get Template */
 	getResponse, err := sibClient.GetTemplate(templateID)
