@@ -81,6 +81,7 @@ func (c *Client) AggregateReport(a *AggregateReport) (AggregateResponse, error) 
 	return response, nil
 }
 
+// CreateSMSCampaign ...
 func (c *Client) CreateSMSCampaign(s *SMSCampaign) (SMSCampaignResponse, error) {
 
 	emptyResp := SMSCampaignResponse{}
@@ -122,6 +123,7 @@ func (c *Client) CreateSMSCampaign(s *SMSCampaign) (SMSCampaignResponse, error) 
 	return response, nil
 }
 
+// CreateTemplate ...
 func (c *Client) CreateTemplate(t *Template) (TemplateResponse, error) {
 
 	emptyResp := TemplateResponse{}
@@ -163,6 +165,7 @@ func (c *Client) CreateTemplate(t *Template) (TemplateResponse, error) {
 	return response, nil
 }
 
+// DeleteBouncedEmails ...
 // Start and End dates must be in YYYY-MM-DD format
 // Start date must be before end date, and end date must be after start date
 func (c *Client) DeleteBouncedEmails(start, end, email string) error {
@@ -202,6 +205,7 @@ func (c *Client) DeleteBouncedEmails(start, end, email string) error {
 	return nil
 }
 
+// GetTemplate ...
 func (c *Client) GetTemplate(template_id int) (CampaignResponse, error) {
 
 	emptyResp := CampaignResponse{}
@@ -236,6 +240,7 @@ func (c *Client) GetTemplate(template_id int) (CampaignResponse, error) {
 	return response, nil
 }
 
+// ListTemplates ...
 func (c *Client) ListTemplates(t *TemplateList) (TemplateListResponse, error) {
 
 	emptyResp := TemplateListResponse{}
@@ -278,6 +283,7 @@ func (c *Client) ListTemplates(t *TemplateList) (TemplateListResponse, error) {
 	return response, nil
 }
 
+// SendEmail ...
 func (c *Client) SendEmail(e *Email) (EmailResponse, error) {
 
 	emptyResp := EmailResponse{}
@@ -319,6 +325,7 @@ func (c *Client) SendEmail(e *Email) (EmailResponse, error) {
 	return response, nil
 }
 
+// SendSMS ...
 func (c *Client) SendSMS(s *SMSRequest) (SMSResponse, error) {
 
 	emptyResp := SMSResponse{}
@@ -360,6 +367,7 @@ func (c *Client) SendSMS(s *SMSRequest) (SMSResponse, error) {
 	return response, nil
 }
 
+// SendTemplateEmail ...
 func (c *Client) SendTemplateEmail(id int, to []string, e *EmailOptions) (EmailResponse, error) {
 
 	toString := strings.Join(to, "|")
@@ -417,6 +425,7 @@ func (c *Client) SendTemplateEmail(id int, to []string, e *EmailOptions) (EmailR
 	return response, nil
 }
 
+// SMSCampaignTest ...
 func (c *Client) SMSCampaignTest(id int, to string) (SMSResponse, error) {
 
 	request := SMSTest{
@@ -463,6 +472,7 @@ func (c *Client) SMSCampaignTest(id int, to string) (SMSResponse, error) {
 	return response, nil
 }
 
+// UpdateSMSCampaign ...
 func (c *Client) UpdateSMSCampaign(id int, s *SMSCampaign) error {
 
 	body, err := json.Marshal(s)
@@ -495,6 +505,7 @@ func (c *Client) UpdateSMSCampaign(id int, s *SMSCampaign) error {
 	return nil
 }
 
+// UpdateTemplate ...
 func (c *Client) UpdateTemplate(id int, t *Template) error {
 
 	body, err := json.Marshal(t)
