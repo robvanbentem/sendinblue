@@ -43,7 +43,7 @@ type SMSData struct {
 	Number_sent      int          `json:"number_sent"`
 	To               string       `json:"to"`
 	Sms_count        int          `json:"sms_count"`
-	Credits_used     float64      `json:"json:"credits_used"`
+	Credits_used     float64      `json:"credits_used"`
 	Remaining_credit float64      `json:"remaining_credit"`
 	Reference        SMSReference `json:"reference"`
 	Description      string       `json:"description"`
