@@ -24,7 +24,7 @@ func main() {
 		Name:     "Test SMS Campaign",
 		Sender:   "Tester",
 		Content:  "Hello World",
-		Send_now: 1,
+		Send_now: 1, // ready to send
 	}
 
 	createResp, err := sibClient.CreateSMSCampaign(myCampaign)
@@ -52,7 +52,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	log.Println("Update Campaign: succesful")
+	log.Println("Update Campaign: successful")
 
 	/* Test SMS Campaign */
 	testNumber := "+00000000000" // Mobile Number to test campaign on
