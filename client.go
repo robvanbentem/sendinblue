@@ -46,35 +46,35 @@ func (c *Client) AggregateReport(a *AggregateReport) (AggregateResponse, error) 
 
 	body, err := json.Marshal(a)
 	if err != nil {
-		err = fmt.Errorf("Could not marshal JSON: ", err)
+		err = fmt.Errorf("Could not marshal JSON: %+v", err)
 		return emptyResp, err
 	}
 	r := bytes.NewReader(body)
 
 	req, err := http.NewRequest("POST", "https://api.sendinblue.com/v2.0/statistics", r)
 	if err != nil {
-		err := fmt.Errorf("Could not create http request: ", err)
+		err := fmt.Errorf("Could not create http request: %+v", err)
 		return emptyResp, err
 	}
 	req.Header.Add("Content-Type", "application/json")
 	req.Header.Add("api-key", c.apiKey)
 	resp, err := c.Client.Do(req)
 	if err != nil {
-		err := fmt.Errorf("Could not send http request: ", err)
+		err := fmt.Errorf("Could not send http request: %+v", err)
 		return emptyResp, err
 	}
 	defer resp.Body.Close()
 
 	b, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		err := fmt.Errorf("Could not recognize API response format: ", err)
+		err := fmt.Errorf("Could not recognize API response format: %+v", err)
 		return emptyResp, err
 	}
 
 	var response AggregateResponse
 	err = json.Unmarshal(b, &response)
 	if err != nil {
-		err := fmt.Errorf("Could not decode response format: ", err)
+		err := fmt.Errorf("Could not decode response format: %+v", err)
 		return emptyResp, err
 	}
 
@@ -87,35 +87,35 @@ func (c *Client) CreateSMSCampaign(s *SMSCampaign) (SMSCampaignResponse, error) 
 
 	body, err := json.Marshal(s)
 	if err != nil {
-		err = fmt.Errorf("Could not marshal JSON: ", err)
+		err = fmt.Errorf("Could not marshal JSON: %+v", err)
 		return emptyResp, err
 	}
 	r := bytes.NewReader(body)
 
 	req, err := http.NewRequest("POST", "https://api.sendinblue.com/v2.0/sms", r)
 	if err != nil {
-		err := fmt.Errorf("Could not create http request: ", err)
+		err := fmt.Errorf("Could not create http request: %+v", err)
 		return emptyResp, err
 	}
 	req.Header.Add("Content-Type", "application/json")
 	req.Header.Add("api-key", c.apiKey)
 	resp, err := c.Client.Do(req)
 	if err != nil {
-		err := fmt.Errorf("Could not send http request: ", err)
+		err := fmt.Errorf("Could not send http request: %+v", err)
 		return emptyResp, err
 	}
 	defer resp.Body.Close()
 
 	b, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		err := fmt.Errorf("Could not recognize API response format: ", err)
+		err := fmt.Errorf("Could not recognize API response format: %+v", err)
 		return emptyResp, err
 	}
 
 	var response SMSCampaignResponse
 	err = json.Unmarshal(b, &response)
 	if err != nil {
-		err := fmt.Errorf("Could not decode response format: ", err)
+		err := fmt.Errorf("Could not decode response format: %+v", err)
 		return emptyResp, err
 	}
 
@@ -128,35 +128,35 @@ func (c *Client) CreateTemplate(t *Template) (TemplateResponse, error) {
 
 	body, err := json.Marshal(t)
 	if err != nil {
-		err = fmt.Errorf("Could not marshal JSON: ", err)
+		err = fmt.Errorf("Could not marshal JSON: %+v", err)
 		return emptyResp, err
 	}
 	r := bytes.NewReader(body)
 
 	req, err := http.NewRequest("POST", "https://api.sendinblue.com/v2.0/template", r)
 	if err != nil {
-		err := fmt.Errorf("Could not create http request: ", err)
+		err := fmt.Errorf("Could not create http request: %+v", err)
 		return emptyResp, err
 	}
 	req.Header.Add("Content-Type", "application/json")
 	req.Header.Add("api-key", c.apiKey)
 	resp, err := c.Client.Do(req)
 	if err != nil {
-		err := fmt.Errorf("Could not send http request: ", err)
+		err := fmt.Errorf("Could not send http request: %+v", err)
 		return emptyResp, err
 	}
 	defer resp.Body.Close()
 
 	b, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		err := fmt.Errorf("Could not recognize API response format: ", err)
+		err := fmt.Errorf("Could not recognize API response format: %+v", err)
 		return emptyResp, err
 	}
 
 	var response TemplateResponse
 	err = json.Unmarshal(b, &response)
 	if err != nil {
-		err := fmt.Errorf("Could not decode response format: ", err)
+		err := fmt.Errorf("Could not decode response format: %+v", err)
 		return emptyResp, err
 	}
 
@@ -175,21 +175,21 @@ func (c *Client) DeleteBouncedEmails(start, end, email string) error {
 
 	body, err := json.Marshal(request)
 	if err != nil {
-		err = fmt.Errorf("Could not marshal JSON: ", err)
+		err = fmt.Errorf("Could not marshal JSON: %+v", err)
 		return err
 	}
 	r := bytes.NewReader(body)
 
 	req, err := http.NewRequest("POST", "https://api.sendinblue.com/v2.0/bounces", r)
 	if err != nil {
-		err := fmt.Errorf("Could not create http request: ", err)
+		err := fmt.Errorf("Could not create http request: %+v", err)
 		return err
 	}
 	req.Header.Add("Content-Type", "application/json")
 	req.Header.Add("api-key", c.apiKey)
 	resp, err := c.Client.Do(req)
 	if err != nil {
-		err := fmt.Errorf("Could not send http request: ", err)
+		err := fmt.Errorf("Could not send http request: %+v", err)
 		return err
 	}
 	defer resp.Body.Close()
@@ -209,27 +209,27 @@ func (c *Client) GetTemplate(template_id int) (CampaignResponse, error) {
 	url := fmt.Sprintf("https://api.sendinblue.com/v2.0/campaign/%v/detailsv2", template_id)
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
-		err := fmt.Errorf("Could not create http request: ", err)
+		err := fmt.Errorf("Could not create http request: %+v", err)
 		return emptyResp, err
 	}
 	req.Header.Add("api-key", c.apiKey)
 	resp, err := c.Client.Do(req)
 	if err != nil {
-		err := fmt.Errorf("Could not send http request: ", err)
+		err := fmt.Errorf("Could not send http request: %+v", err)
 		return emptyResp, err
 	}
 	defer resp.Body.Close()
 
 	b, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		err := fmt.Errorf("Could not recognize API response format: ", err)
+		err := fmt.Errorf("Could not recognize API response format: %+v", err)
 		return emptyResp, err
 	}
 
 	var response CampaignResponse
 	err = json.Unmarshal(b, &response)
 	if err != nil {
-		err := fmt.Errorf("Could not decode response format: ", err)
+		err := fmt.Errorf("Could not decode response format: %+v", err)
 		return emptyResp, err
 	}
 
@@ -242,7 +242,7 @@ func (c *Client) ListTemplates(t *TemplateList) (TemplateListResponse, error) {
 
 	body, err := json.Marshal(t)
 	if err != nil {
-		err = fmt.Errorf("Could not marshal JSON: ", err)
+		err = fmt.Errorf("Could not marshal JSON: %+v", err)
 		return emptyResp, err
 	}
 	r := bytes.NewReader(body)
@@ -250,28 +250,28 @@ func (c *Client) ListTemplates(t *TemplateList) (TemplateListResponse, error) {
 	url := fmt.Sprintf("https://api.sendinblue.com/v2.0/campaign/detailsv2")
 	req, err := http.NewRequest("GET", url, r)
 	if err != nil {
-		err := fmt.Errorf("Could not create http request: ", err)
+		err := fmt.Errorf("Could not create http request: %+v", err)
 		return emptyResp, err
 	}
 	req.Header.Add("Content-Type", "application/json")
 	req.Header.Add("api-key", c.apiKey)
 	resp, err := c.Client.Do(req)
 	if err != nil {
-		err := fmt.Errorf("Could not send http request: ", err)
+		err := fmt.Errorf("Could not send http request: %+v", err)
 		return emptyResp, err
 	}
 	defer resp.Body.Close()
 
 	b, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		err := fmt.Errorf("Could not recognize API response format: ", err)
+		err := fmt.Errorf("Could not recognize API response format: %+v", err)
 		return emptyResp, err
 	}
 
 	var response TemplateListResponse
 	err = json.Unmarshal(b, &response)
 	if err != nil {
-		err := fmt.Errorf("Could not decode response format: ", err)
+		err := fmt.Errorf("Could not decode response format: %+v", err)
 		return emptyResp, err
 	}
 
@@ -284,35 +284,35 @@ func (c *Client) SendEmail(e *Email) (EmailResponse, error) {
 
 	body, err := json.Marshal(e)
 	if err != nil {
-		err = fmt.Errorf("Could not marshal JSON: ", err)
+		err = fmt.Errorf("Could not marshal JSON: %+v", err)
 		return emptyResp, err
 	}
 	r := bytes.NewReader(body)
 
 	req, err := http.NewRequest("POST", "https://api.sendinblue.com/v2.0/email", r)
 	if err != nil {
-		err := fmt.Errorf("Could not create http request: ", err)
+		err := fmt.Errorf("Could not create http request: %+v", err)
 		return emptyResp, err
 	}
 	req.Header.Add("Content-Type", "application/json")
 	req.Header.Add("api-key", c.apiKey)
 	resp, err := c.Client.Do(req)
 	if err != nil {
-		err := fmt.Errorf("Could not send http request: ", err)
+		err := fmt.Errorf("Could not send http request: %+v", err)
 		return emptyResp, err
 	}
 	defer resp.Body.Close()
 
 	b, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		err := fmt.Errorf("Could not recognize API response format: ", err)
+		err := fmt.Errorf("Could not recognize API response format: %+v", err)
 		return emptyResp, err
 	}
 
 	var response EmailResponse
 	err = json.Unmarshal(b, &response)
 	if err != nil {
-		err := fmt.Errorf("Could not decode response format: ", err)
+		err := fmt.Errorf("Could not decode response format: %+v", err)
 		return emptyResp, err
 	}
 
@@ -325,35 +325,35 @@ func (c *Client) SendSMS(s *SMSRequest) (SMSResponse, error) {
 
 	body, err := json.Marshal(s)
 	if err != nil {
-		err = fmt.Errorf("Could not marshal JSON: ", err)
+		err = fmt.Errorf("Could not marshal JSON: %+v", err)
 		return emptyResp, err
 	}
 	r := bytes.NewReader(body)
 
 	req, err := http.NewRequest("POST", "https://api.sendinblue.com/v2.0/sms", r)
 	if err != nil {
-		err := fmt.Errorf("Could not create http request: ", err)
+		err := fmt.Errorf("Could not create http request: %+v", err)
 		return emptyResp, err
 	}
 	req.Header.Add("Content-Type", "application/json")
 	req.Header.Add("api-key", c.apiKey)
 	resp, err := c.Client.Do(req)
 	if err != nil {
-		err := fmt.Errorf("Could not send http request: ", err)
+		err := fmt.Errorf("Could not send http request: %+v", err)
 		return emptyResp, err
 	}
 	defer resp.Body.Close()
 
 	b, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		err := fmt.Errorf("Could not recognize API response format: ", err)
+		err := fmt.Errorf("Could not recognize API response format: %+v", err)
 		return emptyResp, err
 	}
 
 	var response SMSResponse
 	err = json.Unmarshal(b, &response)
 	if err != nil {
-		err := fmt.Errorf("Could not decode response format: ", err)
+		err := fmt.Errorf("Could not decode response format: %+v", err)
 		return emptyResp, err
 	}
 
@@ -381,7 +381,7 @@ func (c *Client) SendTemplateEmail(id int, to []string, e *EmailOptions) (EmailR
 
 	body, err := json.Marshal(email)
 	if err != nil {
-		err = fmt.Errorf("Could not marshal JSON: ", err)
+		err = fmt.Errorf("Could not marshal JSON: %+v", err)
 		return emptyResp, err
 	}
 	r := bytes.NewReader(body)
@@ -389,28 +389,28 @@ func (c *Client) SendTemplateEmail(id int, to []string, e *EmailOptions) (EmailR
 	url := fmt.Sprintf("https://api.sendinblue.com/v2.0/template/%v", id)
 	req, err := http.NewRequest("PUT", url, r)
 	if err != nil {
-		err := fmt.Errorf("Could not create http request: ", err)
+		err := fmt.Errorf("Could not create http request: %+v", err)
 		return emptyResp, err
 	}
 	req.Header.Add("Content-Type", "application/json")
 	req.Header.Add("api-key", c.apiKey)
 	resp, err := c.Client.Do(req)
 	if err != nil {
-		err := fmt.Errorf("Could not send http request: ", err)
+		err := fmt.Errorf("Could not send http request: %+v", err)
 		return emptyResp, err
 	}
 	defer resp.Body.Close()
 
 	b, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		err := fmt.Errorf("Could not recognize API response format: ", err)
+		err := fmt.Errorf("Could not recognize API response format: %+v", err)
 		return emptyResp, err
 	}
 
 	var response EmailResponse
 	err = json.Unmarshal(b, &response)
 	if err != nil {
-		err := fmt.Errorf("Could not decode response format: ", err)
+		err := fmt.Errorf("Could not decode response format: %+v", err)
 		return emptyResp, err
 	}
 
@@ -427,7 +427,7 @@ func (c *Client) SMSCampaignTest(id int, to string) (SMSResponse, error) {
 
 	body, err := json.Marshal(request)
 	if err != nil {
-		err = fmt.Errorf("Could not marshal JSON: ", err)
+		err = fmt.Errorf("Could not marshal JSON: %+v", err)
 		return emptyResp, err
 	}
 	r := bytes.NewReader(body)
@@ -435,28 +435,28 @@ func (c *Client) SMSCampaignTest(id int, to string) (SMSResponse, error) {
 	url := fmt.Sprintf("https://api.sendinblue.com/v2.0/sms/%v", id)
 	req, err := http.NewRequest("GET", url, r)
 	if err != nil {
-		err := fmt.Errorf("Could not create http request: ", err)
+		err := fmt.Errorf("Could not create http request: %+v", err)
 		return emptyResp, err
 	}
 	req.Header.Add("Content-Type", "application/json")
 	req.Header.Add("api-key", c.apiKey)
 	resp, err := c.Client.Do(req)
 	if err != nil {
-		err := fmt.Errorf("Could not send http request: ", err)
+		err := fmt.Errorf("Could not send http request: %+v", err)
 		return emptyResp, err
 	}
 	defer resp.Body.Close()
 
 	b, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		err := fmt.Errorf("Could not recognize API response format: ", err)
+		err := fmt.Errorf("Could not recognize API response format: %+v", err)
 		return emptyResp, err
 	}
 
 	var response SMSResponse
 	err = json.Unmarshal(b, &response)
 	if err != nil {
-		err := fmt.Errorf("Could not decode response format: ", err)
+		err := fmt.Errorf("Could not decode response format: %+v", err)
 		return emptyResp, err
 	}
 
@@ -467,7 +467,7 @@ func (c *Client) UpdateSMSCampaign(id int, s *SMSCampaign) error {
 
 	body, err := json.Marshal(s)
 	if err != nil {
-		err = fmt.Errorf("Could not marshal JSON: ", err)
+		err = fmt.Errorf("Could not marshal JSON: %+v", err)
 		return err
 	}
 	r := bytes.NewReader(body)
@@ -475,14 +475,14 @@ func (c *Client) UpdateSMSCampaign(id int, s *SMSCampaign) error {
 	url := fmt.Sprintf("https://api.sendinblue.com/v2.0/sms/%v", id)
 	req, err := http.NewRequest("PUT", url, r)
 	if err != nil {
-		err := fmt.Errorf("Could not create http request: ", err)
+		err := fmt.Errorf("Could not create http request: %+v", err)
 		return err
 	}
 	req.Header.Add("Content-Type", "application/json")
 	req.Header.Add("api-key", c.apiKey)
 	resp, err := c.Client.Do(req)
 	if err != nil {
-		err := fmt.Errorf("Could not send http request: ", err)
+		err := fmt.Errorf("Could not send http request: %+v", err)
 		return err
 	}
 	defer resp.Body.Close()
@@ -499,7 +499,7 @@ func (c *Client) UpdateTemplate(id int, t *Template) error {
 
 	body, err := json.Marshal(t)
 	if err != nil {
-		err = fmt.Errorf("Could not marshal JSON: ", err)
+		err = fmt.Errorf("Could not marshal JSON: %+v", err)
 		return err
 	}
 	r := bytes.NewReader(body)
@@ -507,14 +507,14 @@ func (c *Client) UpdateTemplate(id int, t *Template) error {
 	url := fmt.Sprintf("https://api.sendinblue.com/v2.0/template/%v", id)
 	req, err := http.NewRequest("PUT", url, r)
 	if err != nil {
-		err := fmt.Errorf("Could not create http request: ", err)
+		err := fmt.Errorf("Could not create http request: %+v", err)
 		return err
 	}
 	req.Header.Add("Content-Type", "application/json")
 	req.Header.Add("api-key", c.apiKey)
 	resp, err := c.Client.Do(req)
 	if err != nil {
-		err := fmt.Errorf("Could not send http request: ", err)
+		err := fmt.Errorf("Could not send http request: %+v", err)
 		return err
 	}
 	defer resp.Body.Close()
