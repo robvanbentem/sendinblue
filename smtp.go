@@ -179,8 +179,6 @@ func NewEmail() *Email {
 		To:           to,
 		Inline_image: inline_image,
 	}
-
-	return nil
 }
 
 func NewEmailOptions(replyto, attachment_url string, cc, bcc []string) *EmailOptions {
