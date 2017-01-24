@@ -105,6 +105,8 @@ func TestEmailAddImage(t *testing.T) {
 	if email.Inline_image[name] == "" {
 		t.Error("Image is not being added in AddImage Email method.")
 	}
+
+	f.Close()
 }
 
 func TestEmailOptionsAddAttachment(t *testing.T) {
@@ -116,4 +118,6 @@ func TestEmailOptionsAddAttachment(t *testing.T) {
 	if options.Attachment[f.Name()] == "" {
 		t.Error("Attachments are not being added with EmailOptions AddAttachment method.")
 	}
+
+	f.Close()
 }
