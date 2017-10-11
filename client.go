@@ -13,8 +13,9 @@ import (
 
 // The Client type is the primary type in the package.
 type Client struct {
-	apiKey string
-	Client *http.Client
+	apiKey  string
+	Client  *http.Client
+	RawBody []byte
 }
 
 // NewClient takes a private SendInBlue API key
@@ -66,6 +67,7 @@ func (c *Client) AggregateReport(a *AggregateReport) (AggregateResponse, error) 
 	defer resp.Body.Close()
 
 	b, err := ioutil.ReadAll(resp.Body)
+	c.RawBody = b
 	if err != nil {
 		err := fmt.Errorf("Could not recognize API response format: %+v", err)
 		return emptyResp, err
@@ -108,6 +110,7 @@ func (c *Client) CreateSMSCampaign(s *SMSCampaign) (SMSCampaignResponse, error) 
 	defer resp.Body.Close()
 
 	b, err := ioutil.ReadAll(resp.Body)
+	c.RawBody = b
 	if err != nil {
 		err := fmt.Errorf("Could not recognize API response format: %+v", err)
 		return emptyResp, err
@@ -150,6 +153,7 @@ func (c *Client) CreateTemplate(t *Template) (TemplateResponse, error) {
 	defer resp.Body.Close()
 
 	b, err := ioutil.ReadAll(resp.Body)
+	c.RawBody = b
 	if err != nil {
 		err := fmt.Errorf("Could not recognize API response format: %+v", err)
 		return emptyResp, err
@@ -225,6 +229,7 @@ func (c *Client) GetTemplate(template_id int) (CampaignResponse, error) {
 	defer resp.Body.Close()
 
 	b, err := ioutil.ReadAll(resp.Body)
+	c.RawBody = b
 	if err != nil {
 		err := fmt.Errorf("Could not recognize API response format: %+v", err)
 		return emptyResp, err
@@ -268,6 +273,7 @@ func (c *Client) ListTemplates(t *TemplateList) (TemplateListResponse, error) {
 	defer resp.Body.Close()
 
 	b, err := ioutil.ReadAll(resp.Body)
+	c.RawBody = b
 	if err != nil {
 		err := fmt.Errorf("Could not recognize API response format: %+v", err)
 		return emptyResp, err
@@ -310,6 +316,7 @@ func (c *Client) SendEmail(e *Email) (EmailResponse, error) {
 	defer resp.Body.Close()
 
 	b, err := ioutil.ReadAll(resp.Body)
+	c.RawBody = b
 	if err != nil {
 		err := fmt.Errorf("Could not recognize API response format: %+v", err)
 		return emptyResp, err
@@ -352,6 +359,7 @@ func (c *Client) SendSMS(s *SMSRequest) (SMSResponse, error) {
 	defer resp.Body.Close()
 
 	b, err := ioutil.ReadAll(resp.Body)
+	c.RawBody = b
 	if err != nil {
 		err := fmt.Errorf("Could not recognize API response format: %+v", err)
 		return emptyResp, err
@@ -410,6 +418,7 @@ func (c *Client) SendTemplateEmail(id int, to []string, e *EmailOptions) (EmailR
 	defer resp.Body.Close()
 
 	b, err := ioutil.ReadAll(resp.Body)
+	c.RawBody = b
 	if err != nil {
 		err := fmt.Errorf("Could not recognize API response format: %+v", err)
 		return emptyResp, err
@@ -457,6 +466,7 @@ func (c *Client) SMSCampaignTest(id int, to string) (SMSResponse, error) {
 	defer resp.Body.Close()
 
 	b, err := ioutil.ReadAll(resp.Body)
+	c.RawBody = b
 	if err != nil {
 		err := fmt.Errorf("Could not recognize API response format: %+v", err)
 		return emptyResp, err
