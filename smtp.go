@@ -27,7 +27,7 @@ type Email struct {
 	Text         string            `json:"text"`
 	CC           map[string]string `json:"cc"`
 	Bcc          map[string]string `json:"bcc"`
-	ReplyTo      map[string]string `json:"replyto"`
+	ReplyTo      [2]string         `json:"replyto"`
 	Attachment   map[string]string `json:"attachment"` // must be URL
 	Headers      map[string]string `json:"headers"`
 	Inline_image map[string]string `json:"inline_image"`
