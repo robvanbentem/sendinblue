@@ -33,7 +33,7 @@ func NewClient(apiKey string) (*Client, error) {
 	return &Client{
 		apiKey: apiKey,
 		Client: &http.Client{ // could consider using fasthttp client -- but would introduce vendor dep
-			Timeout: time.Second * 10,
+			Timeout: time.Second * 60,
 		},
 	}, nil
 }
